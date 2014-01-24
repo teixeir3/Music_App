@@ -3,22 +3,21 @@
 # Table name: users
 #
 #  id              :integer          not null, primary key
-#  email           :string(255)
-#  password_digest :string(255)
-#  session_token   :string(255)
+#  email           :string(255)      not null
+#  password_digest :string(255)      not null
+#  session_token   :string(255)      not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
-
-
 
 class User < ActiveRecord::Base
   attr_accessible :email, :password_digest, :session_token
   attr_reader :password
 
 
-  validates :email, :password_digest, :session_token, :presence => true
-  validates :email, :uniqueness => true
+  validates :email, :password_digest, :session_token, presence: true
+  validates :email, uniqueness: true
+  validates :password, length: { minimum: 6, allow_nil: true }
   after_initialize :ensure_session_token
 
   def password=(secret)
@@ -41,8 +40,6 @@ class User < ActiveRecord::Base
   end
 
   def self.find_by_credentials(email, secret)
-    #verify there's a user in db with this email
-    #if there is, verify their secret pw with helpers
     current_user = User.find_by_email(email)
 
     return nil unless current_user

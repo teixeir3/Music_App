@@ -2,12 +2,36 @@
 <html>
 <head>
   <title>MusicApp</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <!-- <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
+  <%= csrf_meta_tags %> -->
 </head>
-<body>
 
+<input
+    name="authenticity_token"
+    type="hidden"
+    value="<%= form_authenticity_token %>">
+<% u = current_user %>
+<% if u %>
+  <p> <%= u.session_token %> </p>
+  <p> <%= u.email %> </p>
+  <p> <%= u.password %> </p>
+  <p> <%= u.id %> </p>
+  <p> <%= button_to "Logout", session_url(1), :method => :delete %> </p>
+
+<% else %>
+  <p> <%= link_to "Login", new_session_url %> </p>
+<% end %>
+
+<p> <%= flash[:notice] %> </p>
+<p> <%= flash[:error] %> </p>
+
+
+
+
+<h1>Welcome to MusicApp!</h1>
+<br>
+<body>
 <%= yield %>
 
 </body>

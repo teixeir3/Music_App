@@ -11,7 +11,46 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140124022056) do
+ActiveRecord::Schema.define(:version => 20140124185100) do
+
+  create_table "albums", :force => true do |t|
+    t.integer  "band_id",    :null => false
+    t.string   "title",      :null => false
+    t.date     "year",       :null => false
+    t.boolean  "live",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "albums", ["band_id", "title"], :name => "index_albums_on_band_id_and_title"
+
+  create_table "bands", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "notes", :force => true do |t|
+    t.string   "text",       :null => false
+    t.integer  "user_id",    :null => false
+    t.integer  "track_id",   :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "notes", ["user_id", "track_id"], :name => "index_notes_on_user_id_and_track_id"
+
+  create_table "tracks", :force => true do |t|
+    t.integer  "album_id",   :null => false
+    t.string   "title",      :null => false
+    t.boolean  "live",       :null => false
+    t.string   "lyrics"
+    t.integer  "ord"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "tracks", ["album_id", "title"], :name => "index_tracks_on_album_id_and_title"
 
   create_table "users", :force => true do |t|
     t.string   "email",           :null => false
