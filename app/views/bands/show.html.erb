@@ -9,4 +9,11 @@
 
   <br><br>
 
+
+  <p> <%= button_to "Delete Band", band_url(@band), method: :delete%>
+
+  <p> <%= link_to "Edit Band", edit_band_url(@band) %> </p>
+
+  <p> <%= link_to "Index", bands_url %> </p>
+
 </body>

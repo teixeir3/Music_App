@@ -10,7 +10,6 @@ class BandsController < ApplicationController
   end
 
   def new
-
   end
 
   def create
@@ -26,14 +25,21 @@ class BandsController < ApplicationController
   end
 
   def update
-
+    @band = Band.find_by_id(params[:id])
+    @band.update_attributes(params[:band])
+    redirect_to band_url(@band)
   end
 
-  def destroy
 
+  def destroy
+    @band = Band.find_by_id(params[:id])
+    @band.destroy
+
+    redirect_to bands_url
   end
 
   def edit
-
+    @band = Band.find_by_id(params[:id])
+    render :edit
   end
 end
