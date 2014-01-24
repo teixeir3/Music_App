@@ -14,6 +14,8 @@
 class Album < ActiveRecord::Base
   attr_accessible :band_id, :title, :year, :live
 
+  validates :band_id, :title, :year, :live, :presence => true
+
   belongs_to(
     :band,
     :class_name => 'Band',
@@ -25,6 +27,7 @@ class Album < ActiveRecord::Base
     :tracks,
     :class_name => 'Track',
     :foreign_key => :album_id,
-    :primary_key => :id
+    :primary_key => :id,
+    :dependent => :destroy
   )
 end

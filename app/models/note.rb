@@ -13,6 +13,8 @@
 class Note < ActiveRecord::Base
   attr_accessible :text, :user_id, :track_id
 
+  validates :text, :user_id, :track_id, presence: true
+
   belongs_to(
     :track,
     :class_name => 'Track',
