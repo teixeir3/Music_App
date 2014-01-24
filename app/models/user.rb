@@ -20,6 +20,13 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6, allow_nil: true }
   after_initialize :ensure_session_token
 
+  has_many(
+    :notes,
+    :class_name => 'Note',
+    :foreign_key => :user_id,
+    :primary_key => :id
+  )
+
   def password=(secret)
     @password = secret
     self.password_digest = BCrypt::Password.create(secret)

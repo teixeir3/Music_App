@@ -11,5 +11,19 @@
 #
 
 class Note < ActiveRecord::Base
-  # attr_accessible :title, :body
+  attr_accessible :text, :user_id, :track_id
+
+  belongs_to(
+    :track,
+    :class_name => 'Track',
+    :foreign_key => :track_id,
+    :primary_key => :id
+  )
+
+  belongs_to(
+    :user,
+    :class_name => 'User',
+    :foreign_key => :user_id,
+    :primary_key => :id
+  )
 end
