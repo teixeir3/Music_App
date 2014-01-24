@@ -1,0 +1,12 @@
+<h1><%= @band.name %></h1>
+<h2>Band details</h2>
+<body>
+  <table>
+    <% @band.attributes.each do |attr, val| %>
+     <tr><th><%= "#{attr}"%></th><td><%="#{val}" %></td></tr>
+    <%  end %>
+  </table>
+
+  <br><br>
+
+</body>
