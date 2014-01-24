@@ -23,6 +23,7 @@ end
 gem 'jquery-rails'
 
 gem 'bcrypt-ruby', require: 'bcrypt'
+gem 'annotate'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -36,5 +37,8 @@ gem 'bcrypt-ruby', require: 'bcrypt'
 # Deploy with Capistrano
 # gem 'capistrano'
 
-# To use debugger
-# gem 'debugger'
+group :development do
+  gem 'debugger'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+end
