@@ -32,7 +32,6 @@ class TracksController < ApplicationController
       redirect_to new_track_url
     end
 
-
   end
 
   def update

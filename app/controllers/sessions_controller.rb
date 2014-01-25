@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
     session[:token] = @user.session_token
 
 
-    redirect_to show_users_url
+    redirect_to user_url(@user)
   end
 
   def destroy

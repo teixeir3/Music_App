@@ -12,9 +12,14 @@
   <br>
 
   <p> <%= link_to "Edit Track", edit_track_url(@track) %> </p>
-  <p> <%= button_to "Delete Track", track_url(@track), method: :delete%></p>
+  <p> <%= button_to "Delete Track", track_url(@track), method: :delete%></p
+  <br><br>
 
   <p> <%= link_to "Back to #{@track.album.title}", album_url(@track.album) %></p>
+
+  <% @track.notes.each do |note| %>
+    <%= render "notes/note", :note => note, :action => :show %>
+  <% end %>
 
   <%= render "form", :track => @track, :action => :new %>
 
