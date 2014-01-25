@@ -1,6 +1,7 @@
 module SessionsHelper
 
   def current_user=(user)
+    return nil unless user.activated
     @current_user = user
     session[:token] = user.session_token
   end

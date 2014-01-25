@@ -9,15 +9,16 @@ class SessionsController < ApplicationController
 
     if @user.nil?
       flash[:error] = "Incorrect credentials, dude!"
-    else
+      redirect_to new_session_url
+    elsif @user.activated
       flash[:notice] = "Welcome back, #{@user.email} dude!"
+      session[:token] = @user.session_token
+      redirect_to user_url(@user)
+    else
+      flash[:error] = "You must first activate your account from the link provided in the email."
+      redirect_to new_session_url
     end
 
-    # @user.reset_session_token!
-    session[:token] = @user.session_token
-
-
-    redirect_to user_url(@user)
   end
 
   def destroy
