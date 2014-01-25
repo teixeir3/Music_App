@@ -1,0 +1,43 @@
+<form action="<%= album_tracks_url%>" method="POST">
+
+  <input type="hidden"
+          name="authenticity_token"
+          value="<%= form_authenticity_token %>">
+
+
+      <label for="track_title">Enter the track title:
+  <p> <input type="text"
+              name="track[title]"
+              id="track_title"> </p>
+
+      <label for="track_lyrics">Enter the lyrics:
+  <p> <input type="text"
+              name="track[lyrics]"
+              id="track_lyrics"> </p>
+
+  <p> Is it a bonus or regular track?  </p>
+
+      <label for="track_bonus_true">Bonus</label>
+  <p> <input type="radio"
+              name="track[bonus]"
+              value="true"></p>
+
+      <label for="track_bonus_false">Regular</label>
+  <p> <input type="radio"
+              name="track[bonus]"
+              value"false"></p>
+
+      <label for="track_ord">Enter the track number:
+  <p> <input type="number"
+              name="track[ord]"
+              id="track_ord"> </p>
+
+      <input type="hidden"
+              name="track[album_id]"
+              value="<%= @album.id %>">
+
+
+
+  <p> <input type="submit" value="Create Track" > </p>
+
+</form>

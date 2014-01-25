@@ -1,0 +1,9 @@
+<h2>Album index</h2>
+<body>
+  <ul>
+    <% @albums.each do |album| %>
+      <li> <%= link_to "#{album.title}", album_url(album)  %> </li>
+    <%  end %>
+  </ul>
+
+</body>

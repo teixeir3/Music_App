@@ -1,0 +1,15 @@
+<h1><%= @track.title %></h1>
+<h2>Track details</h2>
+<body>
+  <table>
+    <% @track.attributes.each do |attr, val| %>
+     <tr><th><%= "#{attr}"%></th><td><%="#{val}" %></td></tr>
+    <%  end %>
+  </table>
+
+  <br>
+  <p> <%= button_to "Delete Track", track_url(@track), method: :delete%>
+
+  <p> <%= link_to "Edit Track", edit_track_url(@track) %> </p>
+
+</body>

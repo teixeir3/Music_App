@@ -1,0 +1,34 @@
+<form action="<%= band_albums_url%>" method="POST">
+
+  <input type="hidden"
+          name="authenticity_token"
+          value="<%= form_authenticity_token %>">
+
+
+      <label for="album_title">Enter the album title:
+  <p> <input type="text"
+              name="album[title]"
+              id="band_title"> </p>
+
+      <label for="album_year">Enter the year it was released:
+  <p> <input type="date"
+              name="album[year]"
+              id="band_year"> </p>
+
+  <p>Was it recorded live or studio?  </p>
+
+      <label for="album_live_true">Live</label>
+  <p> <input type="radio"
+              name="album[live]"
+              value="true"></p>
+
+      <label for="album_live_false">Studio</label>
+  <p> <input type="radio"
+              name="album[live]"
+              value"false"></p>
+
+
+
+  <p> <input type="submit" value="Create Album" > </p>
+
+</form>
