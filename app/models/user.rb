@@ -2,12 +2,14 @@
 #
 # Table name: users
 #
-#  id              :integer          not null, primary key
-#  email           :string(255)      not null
-#  password_digest :string(255)      not null
-#  session_token   :string(255)      not null
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
+#  id               :integer          not null, primary key
+#  email            :string(255)      not null
+#  password_digest  :string(255)      not null
+#  session_token    :string(255)      not null
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  activated        :boolean          default(FALSE), not null
+#  activation_token :string(255)      default("INACTIVE"), not null
 #
 
 class User < ActiveRecord::Base
@@ -45,6 +47,10 @@ class User < ActiveRecord::Base
 
   def self.generate_session_token
     SecureRandom.urlsafe_base64(16)
+  end
+
+  def generate_activation_token
+    self.activation_token = SecureRandom.urlsafe_base64(16)
   end
 
   def self.find_by_credentials(email, secret)

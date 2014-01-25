@@ -10,10 +10,12 @@ class UsersController < ApplicationController
     @user.password = params[:user][:password]
 
     if @user.save
-      flash[:notice] = "New user '#{@user.email} created!"
-      self.current_user = @user
+      msg = UserMailer.new_user_email(@user)
+      msg.deliver!
 
-      redirect_to new_user_url
+      flash[:notice] = "New user '#{@user.email} created! Click the link in your email to activate your account"
+      # self.current_user = @user
+      redirect_to new_session_url
       # redirect_to sessions_url, method: :post
     else
       flash[:error] = "Failed to create user! Try again:"
@@ -23,5 +25,19 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
+  end
+
+  def activate
+    @user = User.find_by_id(params[:id])
+    @user.activated = true if @user.activation_token = params[:activation_token]
+
+    if @user.activated
+      flash[:notice] = "New user '#{@user.email} activated!"
+      self.current_user = @user
+      redirect_to bands_url
+    else
+      flash[:error] = "An Error has occured! Your account is not activated! Try again!"
+      redirect_to new_user_url
+    end
   end
 end

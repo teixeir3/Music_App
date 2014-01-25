@@ -23,8 +23,8 @@ end
 gem 'jquery-rails'
 
 gem 'bcrypt-ruby', require: 'bcrypt'
-gem 'annotate'
-gem 'letter_opener', :group => :development
+  gem 'annotate'
+gem 'letter_opener'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -42,4 +42,5 @@ group :development do
   gem 'debugger'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'letter_opener'
 end
