@@ -4,7 +4,7 @@ class TracksController < ApplicationController
     @album = Album.find_by_id(params[:album_id])
   end
 
-  ###########
+  ##########
 
   # def index
 #     @tracks = Track.all

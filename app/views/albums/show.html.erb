@@ -1,4 +1,4 @@
-<h1><%= @album.title %></h1>
+<h1><%= "#{@album.title}" %></h1> <h4><%="By #{@album.band.name}" %><h4>
 <h2>Album details</h2>
 <body>
   <table>
@@ -10,6 +10,8 @@
   <br><br>
   <p> <%= link_to "Add track", new_album_track_url(@album) %> </p>
   <br>
+
+  <h3> <%= "#{@album.title}: Tracks"%> </h3>
   <ul>
     <% @album.tracks.each do |track| %>
       <p> <%= link_to "#{track.title}", track_url(track) %></p>
